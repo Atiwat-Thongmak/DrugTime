@@ -1,0 +1,14 @@
+{
+    "tabs": {
+        "today": "Today",
+        "medicine": "Medicine",
+        "appointment": "Appointment",
+        "more": "More"
+    },
+    "more": {
+        "Languages": "Languages"
+    },
+    "add": {
+        "Name": "Name Drug"
+    }
+}

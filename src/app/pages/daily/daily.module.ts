@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { DailyPageRoutingModule } from './daily-routing.module';
 
 import { DailyPage } from './daily.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DailyPageRoutingModule
+    DailyPageRoutingModule,
+    TranslateModule
   ],
   declarations: [DailyPage]
 })
