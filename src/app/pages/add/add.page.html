@@ -1,0 +1,186 @@
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>ยาที่ใช้</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item lines="full">
+        <ion-label position="floating">ชื่อยา</ion-label>
+        <ion-input type="email" ></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>ประเภท</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+     <!-- Icon top -->
+     <ion-segment color="tertiary" scrollable value="favorite" (ionChange)="typeChanged($event)" >
+      <ion-segment-button value="Capsule">
+        <ion-label>แคปซูล</ion-label>
+        <ion-icon name="medkit-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="Solution">
+        <ion-label>ยาน้ำ</ion-label>
+        <ion-icon name="medkit-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="Lotion">
+        <ion-label>ยาทา</ion-label>
+        <ion-icon name="medkit-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="Injection">
+        <ion-label>ยาฉีด</ion-label>
+        <ion-icon name="medkit-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="Drug">
+        <ion-label>ยาชุด</ion-label>
+        <ion-icon name="medkit-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="Pills">
+        <ion-label>ยาแผง</ion-label>
+        <ion-icon name="medkit-outline"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+
+    <!-- Icon start -->
+    <!-- <ion-segment color="warning" scrollable value="call">
+      <ion-segment-button value="Capsule" layout="icon-start">
+        <ion-label>แคปซูล</ion-label>
+        <ion-icon name="medkit-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="Solution" layout="icon-start">
+        <ion-label>ยาน้ำ</ion-label>
+        <ion-icon name="medkit-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="Lotion" layout="icon-start">
+        <ion-label>ยาทา</ion-label>
+        <ion-icon name="medkit-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="Injection" layout="icon-start">
+        <ion-label>ยาฉีด</ion-label>
+        <ion-icon name="medkit-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="Drug" layout="icon-start">
+        <ion-label>ยาชุด</ion-label>
+        <ion-icon name="medkit-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="Pills"  layout="icon-start">
+        <ion-label>ยาแผง</ion-label>
+        <ion-icon name="medkit-outline"></ion-icon>
+      </ion-segment-button>
+    </ion-segment> -->
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>ระยะเวลา</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button id="period" (click)="onClickPeriod()" expand="block" fill="clear" shape="round">
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+
+
+  <div style="width: 600px;align-self: center;margin-left: 500px;">
+
+    <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+    
+      <div style="background-color: whitesmoke;">
+    
+          <h5 class="card-header">Angular Dynamic Form</h5>
+    
+          <div class="card-body border-bottom">
+    
+              <div class="form-row">
+    
+                  <div class="form-group">
+    
+                      <label>Number of Tickets m</label>
+    
+                      <select formControlName="numberOfTickets" class="form-control" (change)="onChangeTickets($event)" >
+    
+                          <option value="">Select</option>
+    
+                          <option *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]">{{i}}</option>
+    
+                      </select>
+    
+                      <div *ngIf="submitted && f.numberOfTickets.errors" class="invalid-feedback">
+    
+                          <div *ngIf="f.numberOfTickets.errors.required">Number of tickets is required</div>
+    
+                      </div>
+    
+                  </div>
+    
+              </div>
+    
+          </div>
+    
+          <div *ngFor="let ticket of ticketFormGroups; let i = index" class="list-group list-group-flush">
+    
+              <div class="list-group-item">
+    
+                  <h5 class="card-title">Ticket {{i + 1}}</h5>
+    
+                  <div [formGroup]="ticket" class="form-row">
+    
+                      <div class="form-group col-6">
+    
+                          <label>Name</label>
+    
+                          <input type="text" formControlName="name" class="form-control" />
+    
+                          <div *ngIf="submitted && ticket.controls.name.errors" class="invalid-feedback">
+    
+                              <div *ngIf="ticket.controls.name.errors.required">Name is required</div>
+    
+                          </div>
+    
+                      </div>
+    
+                      <div class="form-group col-6">
+    
+                          <label>Email</label>
+    
+                          <input type="text" formControlName="email" class="form-control"/>
+    
+                          <div *ngIf="submitted && ticket.controls.email.errors" class="invalid-feedback">
+    
+                              <div *ngIf="ticket.controls.email.errors.required">Email is required</div>
+    
+                              <div *ngIf="ticket.controls.email.errors.email">Please enter a valid email address</div>
+    
+                          </div>
+    
+                      </div>
+    
+                  </div>
+    
+              </div>
+    
+          </div>
+    
+          <div class="card-footer text-center border-top-0">
+    
+              <button class="btn btn-primary mr-1">Buy Tickets</button>
+    
+              <button class="btn btn-secondary mr-1" type="reset" (click)="onReset()">Reset</button>
+    
+              <button class="btn btn-secondary" type="button" (click)="onClear()">Clear</button>
+    
+          </div>
+    
+      </div>
+    
+    </form>
+    
+    </div>
+
+</ion-content>
